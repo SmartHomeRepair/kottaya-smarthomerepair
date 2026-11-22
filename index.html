@@ -35,7 +35,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; color-scheme: dark; }
   body {
     font-family: var(--body);
     background: var(--bg);
@@ -328,6 +328,10 @@
   .field input:focus, .field select:focus, .field textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(37,211,102,0.2);
+  }
+  .field select option {
+    background: #0f172a;
+    color: #ffffff;
   }
   .field textarea { resize: vertical; min-height: 90px; }
   .submit-btn {
