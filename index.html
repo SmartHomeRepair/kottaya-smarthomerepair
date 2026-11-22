@@ -534,7 +534,7 @@
   }
   .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 26px; }
   .support-card, .review-card { padding: 22px; border-radius: var(--glass-radius-sm); }
-  .support-card .s-label { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--accent); }
+  .support-card .s-label { font-size: 16px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--accent); }
   .support-card .s-value { font-size: 20px; font-weight: 800; margin: 6px 0 10px; }
   .support-card p, .review-card p { font-size: 13px; color: var(--muted); }
   .s-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
@@ -716,11 +716,39 @@
         <div class="support-card glass-sm">
           <div class="s-label">New Bookings &amp; Quotes</div>
           <div class="s-value">6238054003</div>
-          <p>For service bookings, quotes and repair requests, use our main line.</p>
+          <p>For service bookings, quotes and repair requests, use our main line — or send the details below.</p>
           <div class="s-links">
             <a class="call" href="tel:+916238054003">Call 6238054003</a>
             <a class="chat" href="https://wa.me/916238054003" target="_blank" rel="noopener">WhatsApp 6238054003</a>
           </div>
+          <form class="support-form" id="bForm" onsubmit="sendBookingToWhatsApp(event)" novalidate>
+            <div class="field">
+              <label for="bName">Your Name</label>
+              <input id="bName" type="text" placeholder="Your name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="bPhone">Phone Number</label>
+              <input id="bPhone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
+            </div>
+            <div class="field">
+              <label for="bService">Service Needed</label>
+              <select id="bService" required>
+                <option value="">Select a service</option>
+                <option>Microwave Oven Repair</option>
+                <option>AC Repair &amp; Installation</option>
+                <option>HVAC / VRV</option>
+                <option>Ductable Repair &amp; Maintenance</option>
+                <option>Washing Machine</option>
+                <option>Refrigerator</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="bMessage">Message</label>
+              <textarea id="bMessage" placeholder="Describe your issue or requirement..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Get Quote on WhatsApp</button>
+          </form>
         </div>
       </div>
     </section>
@@ -1036,6 +1064,18 @@
       if (!message) { alert('Please enter your message.'); return; }
       const text = buildMessage('Support — Smart Home Repair', name, phone, '-', message, purpose, 'Sent from website support form');
       const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
+
+    function sendBookingToWhatsApp(e) {
+      e.preventDefault();
+      const name = (document.getElementById('bName').value || '').trim();
+      const phone = (document.getElementById('bPhone').value || '').trim();
+      const service = (document.getElementById('bService').value || '').trim();
+      const message = (document.getElementById('bMessage').value || '').trim();
+      if (!name || !phone || !service) { alert('Please fill in your name, phone and service.'); return; }
+      const text = buildMessage('New Lead — Smart Home Repair', name, phone, service, message, 'booking', 'Sent from website support card');
+      const url = 'https://wa.me/' + waTarget('booking') + '?text=' + encodeURIComponent(text);
       window.open(url, '_blank');
     }
 
