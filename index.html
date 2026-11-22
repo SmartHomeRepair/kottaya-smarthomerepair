@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Smart Home Repair — Smart Home Services in Kottayam</title>
-<meta name="description" content="Smart Home Repair in Kottayam: AC, microwave, HVAC, ductable & washing machine repair. ₹349 visit charge, waived if you proceed. Feedback & complaints: 8077736696." />
+<meta name="description" content="Smart Home Repair in Kottayam: AC, microwave, HVAC, ductable & washing machine repair. ₹349 visit charge, waived if you proceed. Feedback & complaints: 7428336522." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preload" as="image" href="assets/banner-1200.webp" fetchpriority="high" />
@@ -558,6 +558,16 @@
     box-shadow: 0 0 0 3px rgba(239,68,68,.18) !important;
     font-weight: 700;
   }
+  .support-form { display: grid; gap: 10px; margin-top: 18px; }
+  .support-form textarea { min-height: 80px; }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px; margin-top: 24px; text-align: left;
+  }
+  .rv-stars { color: #fbbf24; font-size: 16px; letter-spacing: 2px; }
+  .rv-name { font-weight: 800; margin-top: 6px; }
+  .rv-date { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .reviews-grid .review-card p { margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -668,16 +678,40 @@
     <section id="support">
       <div class="divider" aria-hidden="true"></div>
       <h2 class="section-title">Feedback, Complaints &amp; Support</h2>
-      <p class="section-sub">Something not right, or want to share feedback? Reach our support team directly on Call or WhatsApp — 8077736696. Complaints are flagged and answered first.</p>
+      <p class="section-sub">Something not right, or want to share feedback? Reach our support team directly on Call or WhatsApp — 7428336522. Complaints are flagged and answered first.</p>
       <div class="support-grid">
         <div class="support-card glass-sm">
           <div class="s-label">Feedback &amp; Complaints</div>
-          <div class="s-value">8077736696</div>
-          <p>Call or WhatsApp our support line. Tell us what went wrong and we'll take it up.</p>
+          <div class="s-value">7428336522</div>
+          <p>Call or WhatsApp our support line, or send a message below.</p>
           <div class="s-links">
-            <a class="call" href="tel:+918077736696">Call 8077736696</a>
-            <a class="chat" href="https://wa.me/918077736696" target="_blank" rel="noopener">WhatsApp 8077736696</a>
+            <a class="call" href="tel:+917428336522">Call 7428336522</a>
+            <a class="chat" href="https://wa.me/917428336522" target="_blank" rel="noopener">WhatsApp 7428336522</a>
           </div>
+          <form class="support-form" id="sForm" onsubmit="sendSupportToWhatsApp(event)" novalidate>
+            <div class="field">
+              <label for="sName">Your Name</label>
+              <input id="sName" type="text" placeholder="Your name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="sPhone">Phone Number</label>
+              <input id="sPhone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
+            </div>
+            <div class="field">
+              <label for="sPurpose">I want to</label>
+              <select id="sPurpose" onchange="onPurposeChange(this)">
+                <option value="feedback" selected>Give Feedback</option>
+                <option value="complaint">Register a Complaint</option>
+                <option value="review">Leave a Review</option>
+              </select>
+            </div>
+            <p class="complaint-tag" id="sComplaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
+            <div class="field">
+              <label for="sMessage">Message</label>
+              <textarea id="sMessage" placeholder="Tell us what happened..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Feedback</button>
+          </form>
         </div>
         <div class="support-card glass-sm">
           <div class="s-label">New Bookings &amp; Quotes</div>
@@ -695,15 +729,61 @@
     <section id="reviews">
       <div class="divider" aria-hidden="true"></div>
       <h2 class="section-title">Reviews</h2>
-      <p class="section-sub">Your opinion matters. Send us a review or feedback and help us serve Kottayam better.</p>
-      <div class="support-grid">
-        <div class="review-card glass-sm">
-          <h3 style="margin-bottom:6px">Leave a Review</h3>
-          <p>Share your experience on WhatsApp to 8077736696 — we read every message.</p>
-          <div class="s-links" style="justify-content:center">
-            <a class="chat" href="https://wa.me/918077736696?text=Review%20for%20Smart%20Home%20Repair%20Kottayam" target="_blank" rel="noopener">Write a Review</a>
-          </div>
-        </div>
+      <p class="section-sub">Real reviews from our Google customers. Your opinion matters — send yours on WhatsApp to 7428336522.</p>
+      <div class="s-links" style="margin-top:14px">
+        <a class="chat" href="https://wa.me/917428336522?text=Review%20for%20Smart%20Home%20Repair%20Kottayam" target="_blank" rel="noopener">Write a Review</a>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Rohit Pappan</div><div class="rv-date">4 days ago</div><p>Very good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Ajoy Mahali</div><div class="rv-date">4 days ago</div><p>Shajad did a very good job.</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Faheem Khan</div><div class="rv-date">1 week ago</div><p>Excellent</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Kabeer A</div><div class="rv-date">1 week ago</div><p>Great price · ₹500–1,000<br>Very good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Adnan Sami</div><div class="rv-date">4 days ago</div><p>Good service from smart home repair. Husain came on time, checked the AC properly and explained the issue clearly. He...</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Jijith Jeevan</div><div class="rv-date">2 weeks ago</div><p>₹2,000–2,500<br>Very quick service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">hari.v. pillai</div><div class="rv-date">2 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Akash Nr</div><div class="rv-date">2 weeks ago</div><p>Good service and nice work</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">JIJO JOSE</div><div class="rv-date">3 weeks ago</div><p>Reasonable price · ₹4,000–4,500<br>Very prompt and good service. My fridge was not working properly. I sent a message to smart home repair and the very...</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">SAJAN SAJAN</div><div class="rv-date">3 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Jasmin Johnson</div><div class="rv-date">3 weeks ago</div><p>Nice service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Hanim Haris</div><div class="rv-date">3 weeks ago</div><p>Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Vishnu Tb</div><div class="rv-date">3 weeks ago</div><p>Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Melvin Alven</div><div class="rv-date">4 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Sneha Roy</div><div class="rv-date">4 weeks ago</div><p>Good service , and also it’s available in any time that is the main benefit of smart home repair</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Sachin Cr</div><div class="rv-date">4 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Althaf Jasar</div><div class="rv-date">4 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Bhima Nazrin</div><div class="rv-date">5 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Rocky John</div><div class="rv-date">5 weeks ago</div><p>Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Neha</div><div class="rv-date">5 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Sharath Sadanandan</div><div class="rv-date">6 weeks ago</div><p>NICE SERVICE AND GOOD BEHAVIOUR FROM THE STAFF SIDE AND AC NOW WORKING PERFECTLY</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Fathima Salam</div><div class="rv-date">6 weeks ago</div><p>Not sure · ₹2,500–3,000<br>Very nice service. Service man very frndly and helppfull man</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">S K</div><div class="rv-date">6 weeks ago</div><p>Reasonable price · ₹4,500–5,000<br>My washing machine and fridge are working fine. It was a good service from Mr. Husain Ali ....</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Jasmin Jessy</div><div class="rv-date">6 weeks ago</div><p>₹500–1,000</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">K M Navas</div><div class="rv-date">6 weeks ago</div><p>Great price<br>Very good sarvice form mohd shahzad</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Noushad Kundassery</div><div class="rv-date">6 weeks ago</div><p>Great price · ₹3,000–3,500<br>Bast repair</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Sindhu Shaji</div><div class="rv-date">6 weeks ago</div><p>Very good service thank you</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">roshanravi Official</div><div class="rv-date">7 weeks ago</div><p>Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Firasat Ali</div><div class="rv-date">7 weeks ago</div><p>Great price · ₹1,000–1,500<br>Very good service for Mohammad Shahzad</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Ajayan nk</div><div class="rv-date">7 weeks ago</div><p>They quickly find the defefect and soldved the problem of washing mechine. Thanks for service. Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">JS</div><div class="rv-date">7 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Sanooj Sali</div><div class="rv-date">7 weeks ago</div><p>Best service good and friendly workers ♥️</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">akhilsha shadu</div><div class="rv-date">7 weeks ago</div><p>Very good service , friendly dealing by the staff and mostly recommended</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">suraj muraleedharan</div><div class="rv-date">7 weeks ago</div><p>Very good service and good supported staff</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Vishnu m shenoy</div><div class="rv-date">7 weeks ago</div><p>Very gud service by mohd shahzad for installing our AC responded quickly and came to home for installation I recommend their service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Anju Sanu</div><div class="rv-date">8 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">SULPHY KP</div><div class="rv-date">8 weeks ago</div><p>Great price · ₹3,500–4,000<br>Super customer service ,with polite attitude</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">SANU MAJEENDRAN</div><div class="rv-date">8 weeks ago</div><p>Great price · ₹500–1,000<br>Very nice technician husain</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">ROHIN</div><div class="rv-date">8 weeks ago</div><p>Good service amazing duty keep it up</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Bhaskaran A</div><div class="rv-date">8 weeks ago</div><p>Great price · ₹5,000+<br>Very nice service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Kamil malik Kamil malik</div><div class="rv-date">9 weeks ago</div><p>good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Bhagyalakshmi A J</div><div class="rv-date">9 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Zaid Khan</div><div class="rv-date">9 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">P Pranav</div><div class="rv-date">11 weeks ago</div><p>Reasonable price · ₹3,000–3,500</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Nijas P.s</div><div class="rv-date">11 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">syam ks</div><div class="rv-date">12 weeks ago</div><p>Good service</p></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Rakesh K</div><div class="rv-date">12 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Vyshakh K Venu</div><div class="rv-date">12 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">ullas sathees</div><div class="rv-date">12 weeks ago</div></div>
+        <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Pagal Ladka</div><div class="rv-date">12 weeks ago</div><p>Best washing machine service and fast service</p></div>
       </div>
     </section>
 
@@ -734,7 +814,7 @@
                 <option value="review">Leave a Review</option>
               </select>
             </div>
-            <p class="complaint-tag" id="complaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 8077736696</p>
+            <p class="complaint-tag" id="complaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
             <div class="field">
               <label for="service">Service Needed <span aria-hidden="true">*</span></label>
               <select id="service" required>
@@ -768,7 +848,7 @@
           </div>
           <div class="info-card glass-sm">
             <div class="label">Feedback / Complaints</div>
-            <div class="value">8077736696</div>
+            <div class="value">7428336522</div>
             <div class="sub">Call or WhatsApp support</div>
           </div>
           <div class="info-card glass-sm">
@@ -826,7 +906,7 @@
             <option value="review">Leave a Review</option>
           </select>
         </div>
-        <p class="complaint-tag" id="pcomplaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 8077736696</p>
+        <p class="complaint-tag" id="pcomplaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
         <div class="field">
           <label for="pservice">Service Needed <span aria-hidden="true">*</span></label>
           <select id="pservice" required>
@@ -876,7 +956,7 @@
     })();
 
     /* Selecting "Register a Complaint" highlights the message box and flags
-       the outgoing WhatsApp message. Support line: 8077736696. */
+       the outgoing WhatsApp message. Support line: 7428336522. */
     function onPurposeChange(sel) {
       const form = sel.closest('form');
       if (!form) return;
@@ -895,7 +975,7 @@
 
     function waTarget(purpose) {
       return (purpose === 'complaint' || purpose === 'feedback' || purpose === 'review')
-        ? '918077736696' : '916238054003';
+        ? '917428336522' : '916238054003';
     }
 
     function buildMessage(prefix, name, phone, service, message, purpose, source) {
@@ -914,6 +994,20 @@
       return title + '\n\n' + 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' +
         'Service: ' + service + '\n' + typeLine + 'Message: ' + (message || '-') +
         '\n\n' + source;
+    }
+
+    function sendSupportToWhatsApp(e) {
+      e.preventDefault();
+      const name = (document.getElementById('sName').value || '').trim();
+      const phone = (document.getElementById('sPhone').value || '').trim();
+      const message = (document.getElementById('sMessage').value || '').trim();
+      const purposeEl = document.getElementById('sPurpose');
+      const purpose = purposeEl ? purposeEl.value : 'feedback';
+      if (!name || !phone) { alert('Please fill in your name and phone.'); return; }
+      if (!message) { alert('Please enter your message.'); return; }
+      const text = buildMessage('Support — Smart Home Repair', name, phone, '-', message, purpose, 'Sent from website support form');
+      const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
     }
 
     function sendPopupToWhatsApp(e) {
