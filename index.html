@@ -922,7 +922,7 @@
       <h2 class="section-title">Google Reviews from Kottayam Customers</h2>
       <p class="section-sub">Real reviews from our Google customers. Your opinion matters — send yours on WhatsApp to 7428336522.</p>
       <div class="s-links" style="margin-top:14px">
-        <a class="chat" href="https://wa.me/917428336522?text=Review%20for%20Smart%20Home%20Repair%20Kottayam" target="_blank" rel="noopener">Write a Review</a>
+        <a id="reviewQrLink" class="chat" href="https://wa.me/917428336522?text=Review%20for%20Smart%20Home%20Repair%20Kottayam" target="_blank" rel="noopener" aria-haspopup="dialog" aria-controls="qrModal">Click here to share a review</a>
       </div>
       <div class="reviews-grid">
         <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Rohit Pappan</div><div class="rv-date">4 days ago</div><p>Very good service</p></div>
@@ -1118,10 +1118,13 @@
     })();
 
     (function () {
-      const link = document.getElementById('navReviews');
+      const navLink = document.getElementById('navReviews');
+      const reviewLink = document.getElementById('reviewQrLink');
       const modal = document.getElementById('qrModal');
       const closeBtn = document.getElementById('qrClose');
-      function openQr() {
+      let opener = navLink;
+      function openQr(trigger) {
+        opener = trigger;
         modal.hidden = false;
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -1131,9 +1134,11 @@
         modal.classList.remove('open');
         modal.hidden = true;
         document.body.style.overflow = '';
-        link.focus();
+        opener.focus();
       }
-      link.addEventListener('click', (e) => { e.preventDefault(); openQr(); });
+      [navLink, reviewLink].forEach((el) => {
+        el.addEventListener('click', (e) => { e.preventDefault(); openQr(el); });
+      });
       closeBtn.addEventListener('click', closeQr);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeQr(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeQr(); });
