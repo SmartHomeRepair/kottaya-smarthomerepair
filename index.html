@@ -519,7 +519,7 @@
   }
   #qrModal[hidden] { display: none !important; }
   .qr-modal { max-width: 340px; text-align: center; }
-  .qr-modal img { display: block; width: 220px; height: 220px; margin: 0 auto 14px; background: #fff; padding: 8px; border-radius: 12px; }
+  .qr-modal img { display: block; width: 220px; height: auto; margin: 0 auto 14px; background: #fff; padding: 8px; border-radius: 12px; }
   .qr-modal .btn { margin-top: 4px; }
 
   /* ---------- RESPONSIVE ---------- */
@@ -1086,8 +1086,8 @@
       <span class="modal-badge">Google</span>
       <h3 id="qrTitle">Check us out on Google</h3>
       <p class="hint">SmartHomeRepair</p>
-      <img id="qrImage" alt="QR code to Smart Home Repair on Google" width="220" height="220" />
-      <a id="qrOpen" class="btn btn-primary" href="https://www.google.com/maps/place/?q=place_id:ChIJMV-PelQNCDsR3n5tAsl58aU" target="_blank" rel="noopener">Open Google Reviews</a>
+      <img src="assets/google-review-qr.png" alt="QR code to Smart Home Repair on Google" width="220" />
+      <a class="btn btn-primary" href="https://local.google.com/place?placeid=ChIJgyN2Q4orBjsR9cfcYJlxuUg&amp;utm_medium=noren&amp;utm_source=gbp&amp;utm_campaign=2026" target="_blank" rel="noopener">Open Google Reviews</a>
     </div>
   </div>
 
@@ -1121,10 +1121,6 @@
       const link = document.getElementById('navReviews');
       const modal = document.getElementById('qrModal');
       const closeBtn = document.getElementById('qrClose');
-      const url = 'https://www.google.com/maps/place/?q=place_id:ChIJMV-PelQNCDsR3n5tAsl58aU';
-      // shortcut: QR image depends on api.qrserver.com, generate locally if offline or privacy matters.
-      document.getElementById('qrImage').src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(url);
-      document.getElementById('qrOpen').href = url;
       function openQr() {
         modal.hidden = false;
         modal.classList.add('open');
