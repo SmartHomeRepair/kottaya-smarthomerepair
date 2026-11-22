@@ -538,7 +538,7 @@
             <h1>Smart Home <span>Repair</span> &amp; Installation</h1>
             <p>Your trusted local experts for smart home setup, repair and maintenance in Kottayam, Kerala. Fast response, fair prices, WhatsApp support.</p>
             <div class="cta-row">
-              <a class="btn btn-primary" href="#lead">Get Free Quote ▶</a>
+              <a class="btn btn-primary" href="#lead" onclick="openWelcomePopup(); return false;">Get Free Quote ▶</a>
               <a class="btn" href="https://wa.me/916238054003" target="_blank" rel="noopener">Chat on WhatsApp</a>
             </div>
           </div>
@@ -761,23 +761,20 @@
       const modal = document.getElementById('welcomeModal');
       const closeBtn = document.getElementById('modalClose');
       function openModal() {
-        if (sessionStorage.getItem('shr_popup_seen')) return;
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
         const first = modal.querySelector('input, select, textarea');
         if (first) setTimeout(() => first.focus(), 350);
       }
+      window.openWelcomePopup = openModal;
       function closeModal() {
         modal.classList.remove('open');
         document.body.style.overflow = '';
-        sessionStorage.setItem('shr_popup_seen', '1');
       }
       closeBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-      if (!sessionStorage.getItem('shr_popup_seen')) {
-        setTimeout(openModal, 900);
-      }
+      setTimeout(openModal, 900);
     })();
 
     function sendPopupToWhatsApp(e) {
@@ -789,7 +786,6 @@
       if (!name || !phone || !service) { alert('Please fill in your name, phone and service.'); return; }
       const text = 'New Lead — Smart Home Repair (Popup)\n\n' + 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' + 'Service: ' + service + '\n' + 'Message: ' + (message || '-') + '\n\n' + 'Sent from website popup';
       const url = 'https://wa.me/916238054003?text=' + encodeURIComponent(text);
-      sessionStorage.setItem('shr_popup_seen', '1');
       document.getElementById('welcomeModal').classList.remove('open');
       document.body.style.overflow = '';
       window.open(url, '_blank');
