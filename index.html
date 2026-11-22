@@ -1127,7 +1127,7 @@
       document.getElementById('qrOpen').href = url;
       function openQr() {
         modal.hidden = false;
-        requestAnimationFrame(() => modal.classList.add('open'));
+        modal.classList.add('open');
         document.body.style.overflow = 'hidden';
         closeBtn.focus();
       }
