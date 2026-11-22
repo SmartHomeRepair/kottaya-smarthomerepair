@@ -1081,6 +1081,9 @@
         </div>
         <button type="submit" class="submit-btn">Send Feedback</button>
       </form>
+      <div style="margin-top:12px;text-align:center">
+        <button type="button" class="btn" id="supportModalCloseBtn">Close</button>
+      </div>
     </div>
   </div>
 
@@ -1143,6 +1146,7 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSupport(); }
       });
       closeBtn.addEventListener('click', closeSupport);
+      document.getElementById('supportModalCloseBtn').addEventListener('click', closeSupport);
       modal.addEventListener('click', (e) => { if (e.target === modal) closeSupport(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeSupport(); });
     })();
