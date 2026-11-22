@@ -556,6 +556,7 @@
     color: #d1fae5; font-size: 13px; font-weight: 700;
   }
   .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 26px; }
+  #supportTitle { cursor: pointer; }
   .support-card, .review-card { padding: 22px; border-radius: var(--glass-radius-sm); }
   .support-card .s-label { font-size: 16px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--accent); }
   .support-card .s-value { font-size: 20px; font-weight: 800; margin: 6px 0 10px; }
@@ -840,7 +841,7 @@
     <!-- SUPPORT: FEEDBACK / COMPLAINTS -->
     <section id="support">
       <div class="divider" aria-hidden="true"></div>
-      <h2 class="section-title">Feedback, Complaints &amp; Support</h2>
+      <h2 class="section-title" id="supportTitle" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="supportModal">Click for Feedback, Complaint, and support</h2>
       <p class="section-sub">Something not right, or want to share feedback? Call or WhatsApp our support line — 7428336522. Complaints are flagged and answered first.</p>
       <div class="s-links">
         <a class="call" href="tel:+917428336522">Call 7428336522</a>
@@ -1050,6 +1051,39 @@
     </div>
   </div>
 
+  <!-- FEEDBACK / COMPLAINT FORM POPUP -->
+  <div class="modal-overlay" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportModalTitle" hidden>
+    <div class="modal glass">
+      <button class="modal-close" id="supportModalClose" aria-label="Close feedback form">&times;</button>
+      <h3 id="supportModalTitle">Feedback, Complaints &amp; Support</h3>
+      <p class="hint">Send your feedback or complaint to our support line on WhatsApp 7428336522.</p>
+      <form class="support-form" id="sForm" onsubmit="sendSupportToWhatsApp(event)" novalidate>
+        <div class="field">
+          <label for="sName">Your Name</label>
+          <input id="sName" type="text" placeholder="Your name" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="sPhone">Phone Number</label>
+          <input id="sPhone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
+        </div>
+        <div class="field">
+          <label for="sPurpose">I want to</label>
+          <select id="sPurpose" onchange="onPurposeChange(this)">
+            <option value="feedback" selected>Give Feedback</option>
+            <option value="complaint">Register a Complaint</option>
+            <option value="review">Leave a Review</option>
+          </select>
+        </div>
+        <p class="complaint-tag" id="sComplaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
+        <div class="field">
+          <label for="sMessage">Message</label>
+          <textarea id="sMessage" placeholder="Tell us what happened..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Feedback</button>
+      </form>
+    </div>
+  </div>
+
   <!-- GOOGLE REVIEW QR POPUP -->
   <div class="modal-overlay" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrTitle" hidden>
     <div class="modal glass qr-modal">
@@ -1086,6 +1120,31 @@
       modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
       // No auto-popup: modal opens only via CTA buttons
+    })();
+
+    (function () {
+      const trigger = document.getElementById('supportTitle');
+      const modal = document.getElementById('supportModal');
+      const closeBtn = document.getElementById('supportModalClose');
+      function openSupport() {
+        modal.hidden = false;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('sName').focus();
+      }
+      function closeSupport() {
+        modal.classList.remove('open');
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        trigger.focus();
+      }
+      trigger.addEventListener('click', openSupport);
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSupport(); }
+      });
+      closeBtn.addEventListener('click', closeSupport);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeSupport(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeSupport(); });
     })();
 
     (function () {
@@ -1154,6 +1213,20 @@
       return title + '\n\n' + 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' +
         'Service: ' + service + '\n' + typeLine + 'Message: ' + (message || '-') +
         '\n\n' + source;
+    }
+
+    function sendSupportToWhatsApp(e) {
+      e.preventDefault();
+      const name = (document.getElementById('sName').value || '').trim();
+      const phone = (document.getElementById('sPhone').value || '').trim();
+      const message = (document.getElementById('sMessage').value || '').trim();
+      const purposeEl = document.getElementById('sPurpose');
+      const purpose = purposeEl ? purposeEl.value : 'feedback';
+      if (!name || !phone) { alert('Please fill in your name and phone.'); return; }
+      if (!message) { alert('Please enter your message.'); return; }
+      const text = buildMessage('Support — Smart Home Repair', name, phone, '-', message, purpose, 'Sent from website support form');
+      const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
     }
 
     function sendBookingToWhatsApp(e) {
