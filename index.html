@@ -290,24 +290,13 @@
   .service-card h3 { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
   .service-card p { color: var(--muted); font-size: 14px; }
 
-  /* ---------- LEAD FORM ---------- */
+  /* ---------- QUOTE / CONTACT ---------- */
   .lead-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 28px;
     align-items: stretch;
   }
-  .lead-form-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--glass-radius);
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  }
-  .lead-form-card h3 { font-weight: 700; font-size: 18px; margin-bottom: 4px; }
-  .lead-form-card .hint { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
   .field { margin-bottom: 16px; }
   .field label {
     display: block;
@@ -355,7 +344,7 @@
   }
   .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37,211,102,0.45); }
 
-  .lead-info { display: flex; flex-direction: column; gap: 16px; }
+  .lead-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
   .info-card {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
@@ -848,50 +837,8 @@
     <section id="lead">
       <div class="divider" aria-hidden="true"></div>
       <h2 class="section-title">Get a Free Quote</h2>
-      <p class="section-sub">Fill the form and we'll open WhatsApp with your details ready to send. We reply fast.</p>
+      <p class="section-sub">Call or WhatsApp us for a free quote — we reply fast.</p>
       <div class="lead-wrap">
-        <div class="lead-form-card glass">
-          <h3>Send a Message</h3>
-          <p class="hint">Your details go straight to our WhatsApp inbox.</p>
-          <form id="leadForm" onsubmit="sendToWhatsApp(event)" novalidate>
-            <div class="field">
-              <label for="name">Your Name <span aria-hidden="true">*</span></label>
-              <input id="name" type="text" placeholder="e.g. Rahul" required autocomplete="name" />
-            </div>
-            <div class="field">
-              <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
-              <input id="phone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
-            </div>
-            <div class="field">
-              <label for="purpose">I want to</label>
-              <select id="purpose" onchange="onPurposeChange(this)">
-                <option value="booking" selected>Book a Service</option>
-                <option value="feedback">Give Feedback</option>
-                <option value="complaint">Register a Complaint</option>
-                <option value="review">Leave a Review</option>
-              </select>
-            </div>
-            <p class="complaint-tag" id="complaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
-            <div class="field">
-              <label for="service">Service Needed <span aria-hidden="true">*</span></label>
-              <select id="service" required>
-                <option value="">Select a service</option>
-                <option>Microwave Oven Repair</option>
-                <option>AC Repair &amp; Installation</option>
-                <option>HVAC / VRV</option>
-                <option>Ductable Repair &amp; Maintenance</option>
-                <option>Washing Machine</option>
-                <option>Refrigerator</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Describe your issue or requirement..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send to WhatsApp ▶</button>
-          </form>
-        </div>
         <div class="lead-info">
           <div class="info-card glass-sm">
             <div class="label">Address</div>
@@ -1106,20 +1053,6 @@
       const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
       document.getElementById('welcomeModal').classList.remove('open');
       document.body.style.overflow = '';
-      window.open(url, '_blank');
-    }
-
-    function sendToWhatsApp(e) {
-      e.preventDefault();
-      const name = (document.getElementById('name').value || '').trim();
-      const phone = (document.getElementById('phone').value || '').trim();
-      const service = (document.getElementById('service').value || '').trim();
-      const message = (document.getElementById('message').value || '').trim();
-      const purposeEl = document.getElementById('purpose');
-      const purpose = purposeEl ? purposeEl.value : 'booking';
-      if (!name || !phone || !service) { alert('Please fill in your name, phone and service.'); return; }
-      const text = buildMessage('New Lead — Smart Home Repair', name, phone, service, message, purpose, 'Sent from website');
-      const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
       window.open(url, '_blank');
     }
   </script>
