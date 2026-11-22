@@ -686,7 +686,7 @@
         {
           "@type": "Question",
           "name": "Where do I send feedback or a complaint?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Call or WhatsApp our support line at 7428336522, or use the feedback form in the Feedback, Complaints and Support section." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Call or WhatsApp our support line at 7428336522, or choose Register a Complaint in our quote form." }
         },
         {
           "@type": "Question",
@@ -828,7 +828,7 @@
         </div>
         <div class="faq-item">
           <h3>Where do I send feedback or a complaint?</h3>
-          <p>Call or WhatsApp our support line at <a href="tel:+917428336522">7428336522</a>, or use the feedback form in the Feedback, Complaints and Support section.</p>
+          <p>Call or WhatsApp our support line at <a href="tel:+917428336522">7428336522</a>, or choose Register a Complaint in our quote form.</p>
         </div>
         <div class="faq-item">
           <h3>Do you repair all brands?</h3>
@@ -841,41 +841,12 @@
     <section id="support">
       <div class="divider" aria-hidden="true"></div>
       <h2 class="section-title">Feedback, Complaints &amp; Support</h2>
-      <p class="section-sub">Something not right, or want to share feedback? Reach our support team directly on Call or WhatsApp — 7428336522. Complaints are flagged and answered first.</p>
+      <p class="section-sub">Something not right, or want to share feedback? Call or WhatsApp our support line — 7428336522. Complaints are flagged and answered first.</p>
+      <div class="s-links">
+        <a class="call" href="tel:+917428336522">Call 7428336522</a>
+        <a class="chat" href="https://wa.me/917428336522" target="_blank" rel="noopener">WhatsApp 7428336522</a>
+      </div>
       <div class="support-grid">
-        <div class="support-card glass-sm">
-          <div class="s-label">Feedback &amp; Complaints</div>
-          <div class="s-value">7428336522</div>
-          <p>Call or WhatsApp our support line, or send a message below.</p>
-          <div class="s-links">
-            <a class="call" href="tel:+917428336522">Call 7428336522</a>
-            <a class="chat" href="https://wa.me/917428336522" target="_blank" rel="noopener">WhatsApp 7428336522</a>
-          </div>
-          <form class="support-form" id="sForm" onsubmit="sendSupportToWhatsApp(event)" novalidate>
-            <div class="field">
-              <label for="sName">Your Name</label>
-              <input id="sName" type="text" placeholder="Your name" required autocomplete="name" />
-            </div>
-            <div class="field">
-              <label for="sPhone">Phone Number</label>
-              <input id="sPhone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
-            </div>
-            <div class="field">
-              <label for="sPurpose">I want to</label>
-              <select id="sPurpose" onchange="onPurposeChange(this)">
-                <option value="feedback" selected>Give Feedback</option>
-                <option value="complaint">Register a Complaint</option>
-                <option value="review">Leave a Review</option>
-              </select>
-            </div>
-            <p class="complaint-tag" id="sComplaintTag">This message will be sent as a COMPLAINT to our support team on WhatsApp 7428336522</p>
-            <div class="field">
-              <label for="sMessage">Message</label>
-              <textarea id="sMessage" placeholder="Tell us what happened..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Feedback</button>
-          </form>
-        </div>
         <div class="support-card glass-sm">
           <div class="s-label">New Bookings &amp; Quotes</div>
           <div class="s-value">6238054003</div>
@@ -1183,20 +1154,6 @@
       return title + '\n\n' + 'Name: ' + name + '\n' + 'Phone: ' + phone + '\n' +
         'Service: ' + service + '\n' + typeLine + 'Message: ' + (message || '-') +
         '\n\n' + source;
-    }
-
-    function sendSupportToWhatsApp(e) {
-      e.preventDefault();
-      const name = (document.getElementById('sName').value || '').trim();
-      const phone = (document.getElementById('sPhone').value || '').trim();
-      const message = (document.getElementById('sMessage').value || '').trim();
-      const purposeEl = document.getElementById('sPurpose');
-      const purpose = purposeEl ? purposeEl.value : 'feedback';
-      if (!name || !phone) { alert('Please fill in your name and phone.'); return; }
-      if (!message) { alert('Please enter your message.'); return; }
-      const text = buildMessage('Support — Smart Home Repair', name, phone, '-', message, purpose, 'Sent from website support form');
-      const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
-      window.open(url, '_blank');
     }
 
     function sendBookingToWhatsApp(e) {
