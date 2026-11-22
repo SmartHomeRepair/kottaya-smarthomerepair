@@ -733,6 +733,35 @@
       <div class="s-links" style="margin-top:14px">
         <a class="chat" href="https://wa.me/917428336522?text=Review%20for%20Smart%20Home%20Repair%20Kottayam" target="_blank" rel="noopener">Write a Review</a>
       </div>
+      <div class="review-card glass-sm" style="margin-top:18px">
+        <h3 style="margin-bottom:6px">Share Your Review</h3>
+        <p>Tell us about your experience — send it straight to our support line on WhatsApp.</p>
+        <form class="support-form" id="rForm" onsubmit="sendReviewToWhatsApp(event)" novalidate>
+          <div class="field">
+            <label for="rName">Your Name</label>
+            <input id="rName" type="text" placeholder="Your name" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="rPhone">Phone Number</label>
+            <input id="rPhone" type="tel" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel" />
+          </div>
+          <div class="field">
+            <label for="rRating">Your Rating</label>
+            <select id="rRating">
+              <option value="5" selected>★★★★★ 5 stars</option>
+              <option value="4">★★★★☆ 4 stars</option>
+              <option value="3">★★★☆☆ 3 stars</option>
+              <option value="2">★★☆☆☆ 2 stars</option>
+              <option value="1">★☆☆☆☆ 1 star</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rMessage">Your Review</label>
+            <textarea id="rMessage" placeholder="How was your experience?"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Review</button>
+        </form>
+      </div>
       <div class="reviews-grid">
         <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Rohit Pappan</div><div class="rv-date">4 days ago</div><p>Very good service</p></div>
         <div class="review-card glass-sm"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★</div><div class="rv-name">Ajoy Mahali</div><div class="rv-date">4 days ago</div><p>Shajad did a very good job.</p></div>
@@ -1007,6 +1036,20 @@
       if (!message) { alert('Please enter your message.'); return; }
       const text = buildMessage('Support — Smart Home Repair', name, phone, '-', message, purpose, 'Sent from website support form');
       const url = 'https://wa.me/' + waTarget(purpose) + '?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    }
+
+    function sendReviewToWhatsApp(e) {
+      e.preventDefault();
+      const name = (document.getElementById('rName').value || '').trim();
+      const phone = (document.getElementById('rPhone').value || '').trim();
+      const rating = (document.getElementById('rRating').value || '5').trim();
+      const message = (document.getElementById('rMessage').value || '').trim();
+      if (!name || !phone) { alert('Please fill in your name and phone.'); return; }
+      if (!message) { alert('Please write your review.'); return; }
+      const body = 'Rating: ' + rating + '/5\n' + message;
+      const text = buildMessage('Review — Smart Home Repair', name, phone, '-', body, 'review', 'Sent from website review form');
+      const url = 'https://wa.me/' + waTarget('review') + '?text=' + encodeURIComponent(text);
       window.open(url, '_blank');
     }
 
